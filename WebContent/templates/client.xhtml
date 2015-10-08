@@ -4,8 +4,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-
-<!-- Mirrored from 188.226.241.135/hotelpetra/homepage_v1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Oct 2015 09:07:31 GMT -->
 <h:head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,8 +12,7 @@
 	<title>Hotel Petra Homepage</title>
 	<!-- Stylesheets -->
 	<h:outputStylesheet name="style.css" library="css"></h:outputStylesheet>
-	<link rel="stylesheet" href="/resources/css/style.css" />
-	<link rel="stylesheet" href="css/owl.carousel.css" />
+	<h:outputStylesheet library="css" name="owl.carousel.css"></h:outputStylesheet>
 
 	<!-- Google Font -->
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700'
@@ -29,7 +26,7 @@
 </h:head>
 
 <h:body>
-
+	<ui:insert name="cnt"></ui:insert>
 	<!-- Start Main-Wrapper -->
 	<div id="main-wrapper">
 
@@ -161,8 +158,10 @@
 			<div class="header-logo-inner">
 				<div class="css-table">
 					<div class="css-table-cell">
-						<a href="#"> <img src="img/logo.png" alt=""
-							class="img-responsive center-block" /></a>
+						<a href="#"> <h:graphicImage
+								styleClass="img-responsive center-block" library="img"
+								name="logo.png" />
+						</a>
 					</div>
 				</div>
 			</div>
@@ -174,16 +173,16 @@
 
 		<div class="banner-bg">
 			<div class="banner-bg-item">
-				<img src="img/banner-bg-1.jpg" alt="" />
+				<h:graphicImage value="/resources/img/banner-bg-1.jpg" />
 			</div>
 			<div class="banner-bg-item">
-				<img src="img/banner-bg-2.jpg" alt="" />
+				<h:graphicImage value="/resources/img/banner-bg-2.jpg" />
 			</div>
 			<div class="banner-bg-item">
-				<img src="img/banner-bg-3.jpg" alt="" />
+				<h:graphicImage value="/resources/img/banner-bg-3.jpg" />
 			</div>
 			<div class="banner-bg-item">
-				<img src="img/banner-bg-0.jpg" alt="" />
+				<h:graphicImage value="/resources/img/banner-bg-0.jpg" />
 			</div>
 		</div>
 
@@ -198,8 +197,7 @@
 								<li class="tab-title active"><a href="#hotel">Hotel</a></li>
 								<li class="tab-title"><a href="#resorts">Resorts</a></li>
 								<li class="tab-title"><a href="#suites">Private suites</a></li>
-								<!-- 	<li class="tab-title"><a href="#bb">Bed & breakfast</a></li>
-							 -->
+								<li class="tab-title"><a href="#bb">Bed &amp; breakfast</a></li>
 							</ul>
 							<ul class="custom-list tab-content-list">
 
@@ -361,7 +359,8 @@
 				</div>
 				<div class="col-md-3 col-sm-6 feature text-center">
 					<div class="overlay">
-						<img src="img/about1.jpg" alt="" class="img-responsive" />
+						<h:graphicImage library="img" name="about1.jpg"
+							styleClass="img-responsive" />
 						<div class="overlay-shadow">
 							<div class="overlay-content">
 								<a href="#" class="btn btn-transparent-white">Read More</a>
@@ -375,7 +374,8 @@
 
 				<div class="col-md-3 col-sm-6 feature text-center">
 					<div class="overlay">
-						<img src="img/about2.jpg" alt="" class="img-responsive" />
+						<h:graphicImage library="img" name="about2.jpg"
+							styleClass="img-responsive" />
 						<div class="overlay-shadow">
 							<div class="overlay-content">
 								<a href="#" class="btn btn-transparent-white">Read More</a>
@@ -389,7 +389,8 @@
 
 				<div class="col-md-3 col-sm-6 feature text-center">
 					<div class="overlay">
-						<img src="img/about3.jpg" alt="" class="img-responsive" />
+						<h:graphicImage library="img" name="about3.jpg"
+							styleClass="img-responsive" />
 						<div class="overlay-shadow">
 							<div class="overlay-content">
 								<a href="#" class="btn btn-transparent-white">Read More</a>
@@ -403,7 +404,8 @@
 
 				<div class="col-md-3 col-sm-6 feature text-center">
 					<div class="overlay">
-						<img src="img/about4.jpg" alt="" class="img-responsive" />
+						<h:graphicImage library="img" name="about4.jpg"
+							styleClass="img-responsive" />
 						<div class="overlay-shadow">
 							<div class="overlay-content">
 								<a href="#" class="btn btn-transparent-white">Read More</a>
@@ -517,7 +519,7 @@
 				<!-- Start Tab-Content -->
 				<div class="col-md-8 tab-content">
 					<div id="fleet" class="tab-pane fade in active">
-						<img src="img/supertabs.jpg" alt="" />
+						<h:graphicImage value="/resources/img/supertabs.jpg" />
 						<header>
 						<h5 class="title">Around the world</h5>
 						<h6 class="subtitle">We are available</h6>
@@ -528,7 +530,7 @@
 							pariatur rerum tempore atque illo!</p>
 					</div>
 					<div id="drivers" class="tab-pane fade">
-						<img src="img/supertabs-2.jpg" alt="" />
+						<h:graphicImage value="/resources/img/supertabs-2.jpg" />
 						<header>
 						<h5 class="title">Our location</h5>
 						<h6 class="subtitle">We are available</h6>
@@ -539,7 +541,7 @@
 							pariatur rerum tempore atque illo!</p>
 					</div>
 					<div id="location" class="tab-pane fade">
-						<img src="img/supertabs-3.jpg" alt="" />
+						<h:graphicImage value="/resources/img/supertabs-3.jpg" />
 						<header>
 						<h5 class="title">Our location</h5>
 						<h6 class="subtitle">We are available</h6>
@@ -566,14 +568,22 @@
 				</div>
 				<div class="col-md-12">
 					<div id="clients-slider" class="owl-carousel">
-						<img src="img/company1.png" alt="" class="img-responsive" /> <img
-							src="img/company2.png" alt="" class="img-responsive" /> <img
-							src="img/company3.png" alt="" class="img-responsive" /> <img
-							src="img/company1.png" alt="" class="img-responsive" /> <img
-							src="img/company2.png" alt="" class="img-responsive" /> <img
-							src="img/company3.png" alt="" class="img-responsive" /> <img
-							src="img/company1.png" alt="" class="img-responsive" /> <img
-							src="img/company2.png" alt="" class="img-responsive" />
+						<h:graphicImage value="/resources/img/company1.png"
+							styleClass="img-responsive" />
+						<h:graphicImage value="/resources/img/company2.png"
+							styleClass="img-responsive" />
+						<h:graphicImage value="/resources/img/company3.png"
+							styleClass="img-responsive" />
+						<h:graphicImage value="/resources/img/company1.png"
+							styleClass="img-responsive" />
+						<h:graphicImage value="/resources/img/company2.png"
+							styleClass="img-responsive" />
+						<h:graphicImage value="/resources/img/company3.png"
+							styleClass="img-responsive" />
+						<h:graphicImage value="/resources/img/company1.png"
+							styleClass="img-responsive" />
+						<h:graphicImage value="/resources/img/company2.png"
+							styleClass="img-responsive" />
 					</div>
 				</div>
 			</div>
@@ -587,7 +597,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 logo-footer">
-						<img src="img/logo-footer.png" alt="" class="img-responsive" />
+						<h:graphicImage value="/resources/img/logo-footer.png"
+							styleClass="img-responsive" />
 					</div>
 					<div class="col-md-4 widget widget-about">
 						<h5 class="title">About Us</h5>
@@ -644,19 +655,19 @@
 
 
 	<!-- Scripts -->
-	<script src="js/jquery-2.1.4.min.js"></script>
-	<script src="js/scripts.js"></script>
+	<h:outputScript library="js" name="jquery-2.1.4.min.js"></h:outputScript>
+	<h:outputScript library="js" name="scripts.js"></h:outputScript>
 	<script src="http://maps.googleapis.com/maps/api/js?sensor=false"
 		type="text/javascript"></script>
-	<script src="js/gmap3.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="js/jquery.ba-outside-events.min.js"></script>
-	<script src="js/jqueryui.js"></script>
-	<script src="js/jquery.vide.min.js"></script>
-	<script src="js/tab.js"></script>
-	<script src="js/transition.js"></script>
-	<script src="js/jquery.matchHeight-min.js"></script>
+	<h:outputScript library="js" name="gmap3.min.js"></h:outputScript>
+	<h:outputScript library="js" name="owl.carousel.min.js"></h:outputScript>
+	<h:outputScript library="js" name="jquery-ui-1.10.4.custom.min.js"></h:outputScript>
+	<h:outputScript library="js" name="jquery.ba-outside-events.min.js"></h:outputScript>
+	<h:outputScript library="js" name="jqueryui.js"></h:outputScript>
+	<h:outputScript library="js" name="jquery.vide.min.js"></h:outputScript>
+	<h:outputScript library="js" name="tab.js"></h:outputScript>
+	<h:outputScript library="js" name="transition.js"></h:outputScript>
+	<h:outputScript library="js" name="jquery.matchHeight-min.js"></h:outputScript>
 </h:body>
 
 </html>
