@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/admin.xhtml">
+	<ui:define name="tagname">Quản lý đơn đặt phòng</ui:define>
+	<ui:define name="content">
+		<h4>Đơn đặt phòng mới</h4>
+		<h4 style="float: right; color: #777bbb">
+			<h:outputFormat value="Hôm nay là ngày {0} tháng {1} năm {2}">
+				<f:param value="#{indexController.toDay.day}"></f:param>
+				<f:param value="#{indexController.toDay.month}"></f:param>
+				<f:param value="#{indexController.toDay.year}"></f:param>
+			</h:outputFormat>
+		</h4>
+		
+		
+		<h:form>
+			<p:dataTable var="ct" value="#{datPhongController.findAll()}"
+				style="font-size: 14px">
+				<p:column headerText="Khách hàng" sortBy="#{ct.khachhang.name}">
+					<h:outputText value="#{ct.khachhang.name}" />
+
+				<!-- <p:commandButton value="View" icon="ui-icon-extlink" actionListener="#{datPhongController.infoKhachHang(ct.khachhang)}"/>
+			-->	</p:column>
+				<p:column headerText="Phone">
+					<h:outputText value="#{ct.khachhang.phone}" />
+				</p:column>
+				<p:column headerText="Phòng">
+					<h:outputText value="#{ct.phong.name}" />
+				</p:column>
+				<p:column headerText="Ngày đặt" sortBy="#{ct.ngayDat}">
+					<h:outputText value="#{ct.ngayDat}" />
+				</p:column>
+				<p:column headerText="Ngày đến dự kiến" sortBy="#{ct.ngayNhan}">
+					<h:outputText value="#{ct.ngayNhan}" />
+				</p:column>
+				<p:column headerText="Ngày đi dự kiến" sortBy="#{ct.ngayTra}">
+					<h:outputText value="#{ct.ngayTra}" />
+				</p:column>
+				<p:column headerText="Ngày check in" sortBy="#{ct.checkin}">
+					<h:outputText value="#{ct.checkin}" rendered="#{ct.status==3}" />
+					<h:outputText value="#{ct.checkin}" rendered="#{ct.status==4}" />
+				</p:column>
+				<p:column headerText="Ngày ngày check out" sortBy="#{ct.checkout}">
+					<h:outputText value="#{ct.checkout}" rendered="#{ct.status==4}" />
+				</p:column>
+				<p:column headerText="Trang thái">
+					<h:outputText value="Đơn mới" rendered="#{ct.status == 1}" />
+					<h:outputText value="Xác nhận đặt" rendered="#{ct.status == 2}" />
+					<h:outputText value="Đã nhận" rendered="#{ct.status == 3}" />
+					<h:outputText value="Đã trả" rendered="#{ct.status == 4}" />
+					<h:outputText value="Đã hủy" rendered="#{ct.status == 5}" />
+				</p:column>
+				<p:column headerText="Tùy chọn">
+					<h:commandButton action="#{datPhongController.checkIn(ct)}"
+						value="Check in" rendered="#{ct.status==2}" />
+					<h:commandButton action="#{datPhongController.checkOut(ct)}"
+						value="Check out" rendered="#{ct.status==3}" />
+					<h:commandButton action="#{datPhongController.xacNhan(ct)}"
+						value="Xác nhận đặt" rendered="#{ct.status==1}" />
+					<h:commandButton action="#{datPhongController.huyDon(ct)}"
+						value="Hủy" rendered="#{ct.status==1}" />
+					<h:commandButton action="#{datPhongController.huyDon(ct)}"
+						value="Hủy" rendered="#{ct.status==2}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

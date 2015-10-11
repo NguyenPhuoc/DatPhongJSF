@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/admin.xhtml">
+	<ui:define name="tagname">Quản lý thông tin khách hàng</ui:define>
+	<ui:define name="content">
+		<h:form style="font-size: 14px">
+			<p:dataTable var="kh" value="#{khachHangController.findAll()}">
+				<p:column headerText="CMND" sortBy="#{kh.cmnd}">
+					<h:outputText value="#{kh.cmnd}" />
+				</p:column>
+				<p:column headerText="Name" sortBy="#{kh.name}">
+					<h:outputText value="#{kh.name}" />
+				</p:column>
+				<p:column headerText="Phone" sortBy="#{kh.phone}">
+					<h:outputText value="#{kh.phone}" />
+				</p:column>
+				<p:column headerText="Address" sortBy="#{kh.address}">
+					<h:outputText value="#{kh.address}" />
+				</p:column>
+				<p:column headerText="Email" sortBy="#{kh.email}">
+					<h:outputText value="#{kh.email}" />
+				</p:column>
+				<p:column headerText="Gender" sortBy="#{kh.gender}">
+					<h:outputText value="Male" rendered="#{kh.gender==1}" />
+					<h:outputText value="Female" rendered="#{kh.gender==2}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

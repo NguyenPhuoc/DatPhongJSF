@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/admin.xhtml">
+	<ui:define name="tagname">Quản lý Phòng</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p:dataTable var="p" value="#{phongController.findAll()}">
+				<p:column headerText="Name" sortBy="#{p.name}">
+					<h:outputText value="Room #{p.name}" />
+				</p:column>
+				<p:column headerText="Price" sortBy="#{p.price}">
+					<h:outputText value="#{p.price}$" />
+				</p:column>
+				<p:column headerText="Status" sortBy="#{p.status}">
+					<h:outputText value="Disable" rendered="#{p.status==0}" />
+					<h:outputText value="Active" rendered="#{p.status==1}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

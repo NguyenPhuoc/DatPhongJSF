@@ -38,10 +38,10 @@ public class IndexController {
 	}
 
 	public String linkIndex() {
-		return "index?faces-redirect=true";
+		return "/index?faces-redirect=true";
 	}
 
 	public String linkAdmin() {
-		return "admin?faces-redirect=true";
+		return "/admin/index?faces-redirect=true";
 	}
 }

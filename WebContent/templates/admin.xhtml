@@ -39,21 +39,23 @@
 
 				<div class="wrapper" style="margin-bottom: 90px">
 					<ul class="nav nav-sidebar" id="sidebar-menu">
-						<h4 class="sidebar-headline">Sidebar Menu</h4>
 						<li class="active"><h:commandLink
 								action="#{indexController.linkAdmin()}" value="">
-								<i class="md md-desktop-mac"></i> Dashboard <span
-									class="sr-only">(current)</span>
-							</h:commandLink></li>
-						<li><a href="timeline.html"><i class="md md-dashboard"></i>
-								Timeline</a></li>
-						<li><a href="real-estate.html"><i class="md md-pin-drop"></i>
-								Real Estate</a></li>
+								<i class="md md-desktop-mac"></i> Dashboard </h:commandLink></li>
+						<li><h:commandLink action="#{adminController.linkDatPhong()}"
+								value="">
+								<i class="md md-dashboard"></i>
+								Đơn đặt phòng</h:commandLink></li>
+						<li><h:commandLink
+								action="#{adminController.linkKhachHang()}">
+								<i class="md md-group"></i>
+								Khách hàng</h:commandLink></li>
+						<li><h:commandLink action="#{adminController.linkPhong()}">
+								<i class="md md-pin-drop"></i>
+								Phòng</h:commandLink></li>
 						<li><a href="course.html"><i class="fa fa-graduation-cap"></i>Learning</a></li>
 						<li><a href="shop.html"><i class="md md-shopping-cart"></i>
 								Shop</a></li>
-						<li><a href="clients-listing.html"><i class="md md-group"></i>
-								Clients</a></li>
 						<li><a href="finances.html"><i class="md md-attach-money"></i>
 								Financial</a></li>
 						<li><a href="email.html"><i class="md md-email"></i>Emails</a></li>
@@ -135,14 +137,14 @@
 
 
 	<!-- Plugins -->
-	<script src="js/plugins.min.js"></script>
+	<h:outputScript library="admin/js" name="plugins.min.js"></h:outputScript>
 
 
 	<!-- Loaded only in index.html for demographic vector map-->
-	<script src="js/jvectormap.js"></script>
+	<h:outputScript library="admin/js" name="jvectormap.js"></h:outputScript>
 
 	<!-- App Scripts -->
-	<script src="js/scripts.js"></script>
+	<h:outputScript library="admin/js" name="scripts.js"></h:outputScript>
 
 
 </h:body>
