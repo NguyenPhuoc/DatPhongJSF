@@ -2,10 +2,146 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/client.xhtml">
-	<ui:define name="tagname">â</ui:define>
-	<ui:define name="content">Demo</ui:define>
+	<ui:define name="content">
+		<h4 style="color: white; display: #{indexController.displayCheckStatus}">#{indexController.message}</h4>
+		<h:form style="display:#{indexController.displayCheck}">
+			<h:dataTable var="p" value="#{indexController.phongs}"
+				style="color:#fff; width:500px; border-color:#fff; font-size:20px; margin:auto; display:#{indexController.displayRoom}"
+				border="2">
+				<h:column>
+					<f:facet name="header">Name</f:facet>    				
+    			  Room #{p.name}
+  			</h:column>
+				<h:column>
+					<f:facet name="header">Price</f:facet>    				
+    			  #{p.price}$/day
+  			</h:column>
+				<h:column>
+					<f:facet name="header">Book now</f:facet>
+					<h:commandLink action="#{indexController.bookRoom(p)}" value="Book"
+						style="color:#fff; border:1.5px #bbb solid; border-radius:3px; padding:3px 5px" />
+
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		<style>
+.tb {
+	color: white;
+	font-size: 16px
+}
+
+.tb tr td {
+	padding: 5px;
+}
+
+.tb tr td:LAST-CHILD {
+	text-align: left;
+}
+
+.tb tr td input {
+	color: black;
+}
+
+.tb tr td a {
+	color: white;
+	border: 2.5px solid #bbb;
+	padding: 3px 5px;
+	font-size: 18px
+}
+
+.a {
+	color: white;
+	border: 2.5px solid #bbb;
+	padding: 3px 5px;
+	font-size: 18px
+}
+</style>
+		<h:form style="display: #{indexController.displayBookRoom}"
+			prependId="false">
+			<table style="margin: auto;" class="tb">
+				<tr>
+					<td>Room:</td>
+					<td><h:outputText value="#{indexController.phong.name}" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Price:</td>
+					<td><h:outputText value="#{indexController.phong.price}$/day" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="3"><hr></hr></td>
+				</tr>
+				<tr>
+					<td style="width: 130px"><h:outputText value="CMND:" /></td>
+					<td><h:inputText value="#{indexController.khachhang.cmnd}"
+							id="cmnd" converterMessage="CMND nhập số" required="true"
+							requiredMessage="*" maxlength="15" /></td>
+					<td><h:message for="cmnd" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Name:" /></td>
+					<td><h:inputText id="name"
+							value="#{indexController.khachhang.name}" requiredMessage="*"
+							required="true" maxlength="50" /></td>
+					<td><h:message for="name" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Gender:" /></td>
+					<td><h:selectOneRadio
+							value="#{indexController.khachhang.gender}" required="true">
+							<f:selectItem itemValue="1" itemLabel="Male" />
+							<f:selectItem itemValue="2" itemLabel="Female" />
+						</h:selectOneRadio></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Phone:" /></td>
+					<td><h:inputText id="phone"
+							value="#{indexController.khachhang.phone}" required="true"
+							maxlength="15" requiredMessage="*" /></td>
+					<td><h:message for="phone" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Email:" /></td>
+					<td><h:inputText id="email"
+							value="#{indexController.khachhang.email}" required="true"
+							maxlength="254" requiredMessage="*"
+							validatorMessage="Invalid email">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</h:inputText></td>
+					<td><h:message for="email" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Address:" /></td>
+					<td><h:inputText id="address"
+							value="#{indexController.khachhang.address}" required="true"
+							maxlength="15" requiredMessage="*" /></td>
+					<td><h:message for="address" /></td>
+				</tr>
+				<tr>
+					<td><h:commandLink action="#{indexController.back()}"
+							value="Back" styleClass="a" immediate="true" /></td>
+					<td colspan="2" style="text-align: center;"><h:commandLink
+							action="#{indexController.submitBookRoom()}" value="Book Now" /></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="text-align: center;">#{indexController.message}</td>
+				</tr>
+			</table>
+		</h:form>
+		<h:form
+			style="display:#{indexController.displayBookSuccess}; color:#fff; padding:20px">
+			<h4>Đặt vé thành công.</h4>
+			<br></br>
+			<h:commandLink action="#{indexController.reset()}" value="Đặt tiếp"
+				styleClass="a" />
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>

@@ -15,7 +15,7 @@
 	<!-- Stylesheets -->
 	<h:outputStylesheet name="style.css" library="css"></h:outputStylesheet>
 	<h:outputStylesheet library="css" name="owl.carousel.css"></h:outputStylesheet>
-	
+
 	<!-- Google Font -->
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700'
 		rel='stylesheet' type='text/css' />
@@ -112,7 +112,8 @@
 											<h:commandLink action="#{indexController.linkIndex()}"
 												value="Home" />
 										</h:form></li>
-									<li class="has-submenu"><a href="/DatPhongJSF/page/admin/index.xhtml">Rooms</a>
+									<li class="has-submenu"><a
+										href="/DatPhongJSF/page/admin/index.xhtml">Rooms</a>
 										<ul class="sub-menu custom-list">
 											<li><a href="listing.html">Rooms List View</a></li>
 											<li><a href="listing2.html">Rooms Grid View</a></li>
@@ -203,130 +204,34 @@
 								<li class="tab-title"><a href="#suites">Private suites</a></li>
 								<li class="tab-title"><a href="#bb">Bed &amp; breakfast</a></li>
 							</ul>
-							<ul class="custom-list tab-content-list">
+							<ul class="custom-list tab-content-list" style="display: #{indexController.displayCheck}">
 
 								<!-- Start Hotel -->
 								<li class="tab-content active"><h:form prependId="false"
 										styleClass="default-form">
-										<span class="arrival calendar"> <p:calendar
-												mindate="#{indexController.toDay}" pt:name="arrival"
+										<span class="arrival calendar"> <p:calendar autocomplete="off"
+												mindate="#{indexController.toDay}" required="true" pt:name="arrival"
 												style="width: 100%" pt:placeholder="Check-In"
 												value="#{indexController.ngayNhan}"></p:calendar> <i
 											class="fa fa-calendar"></i></span>
-										<span class="departure calendar"> <p:calendar
-												mindate="#{indexController.toDay}" pt:name="arrival"
+										<span class="departure calendar"> <p:calendar autocomplete="off"
+												mindate="#{indexController.toDay}" required="true" pt:name="arrival"
 												style="width: 100%" pt:placeholder="Check-Out"
 												value="#{indexController.ngayTra}"></p:calendar> <i
 											class="fa fa-calendar"></i></span>
 
 										<span class="submit-btn" style="width: auto;">
-											<button class="btn btn-transparent">Check Now</button> <a
-											href="#" class="advanced">Advanced Search</a>
+
+											<button class="btn btn-transparent">
+												<h:commandLink action="#{indexController.checkRoom()}"
+													value="Check Now" />
+											</button> <a href="#" class="advanced">Advanced Search</a>
 										</span>
 									</h:form></li>
 								<!-- End Hotel -->
 
-								<!-- Start Resorts -->
-								<li class="tab-content">
-									<form
-										action="http://188.226.241.135/hotelpetra/homepage_v1/index.html"
-										class="default-form">
-										<span class="arrival calendar"> <input type="text"
-											name="arrival" placeholder="Arrival" data-dateformat="m/d/y" />
-											<i class="fa fa-calendar"></i></span> <span
-											class="departure calendar"> <input type="text"
-											name="departure" placeholder="Departure"
-											data-dateformat="m/d/y" /> <i class="fa fa-calendar"></i></span> <span
-											class="adults select-box"> <select name="adults"
-											data-placeholder="Adults">
-												<option>Adults</option>
-												<option value="1">2</option>
-												<option value="2">3</option>
-												<option value="3">4</option>
-										</select>
-										</span> <span class="children select-box"> <select
-											name="children" data-placeholder="Children">
-												<option>Children</option>
-												<option value="1">2</option>
-												<option value="2">3</option>
-												<option value="3">4</option>
-										</select>
-										</span> <span class="submit-btn">
-											<button class="btn btn-transparent">Book Now</button> <a
-											href="#" class="advanced">Advanced Search</a>
-										</span>
-									</form>
-								</li>
-								<!-- End Resorts -->
-
-								<!-- Start Private Suites -->
-								<li class="tab-content">
-									<form
-										action="http://188.226.241.135/hotelpetra/homepage_v1/index.html"
-										class="default-form">
-										<span class="arrival calendar"> <input type="text"
-											name="arrival" placeholder="Arrival" data-dateformat="m/d/y" />
-											<i class="fa fa-calendar"></i></span> <span
-											class="departure calendar"> <input type="text"
-											name="departure" placeholder="Departure"
-											data-dateformat="m/d/y" /> <i class="fa fa-calendar"></i></span> <span
-											class="adults select-box"> <select name="adults"
-											data-placeholder="Adults">
-												<option>Adults</option>
-												<option value="1">2 adults</option>
-												<option value="2">3 adults</option>
-												<option value="3">4 adults</option>
-										</select>
-										</span> <span class="children select-box"> <select
-											name="children" data-placeholder="Children">
-												<option>Children</option>
-												<option value="1">2</option>
-												<option value="2">3</option>
-												<option value="3">4</option>
-										</select>
-										</span> <span class="submit-btn">
-											<button class="btn btn-transparent">Book Now</button> <a
-											href="#" class="advanced">Advanced Search</a>
-										</span>
-									</form>
-								</li>
-								<!-- End Private Suites -->
-
-								<!-- Start Bed & Breakfast -->
-								<li class="tab-content">
-									<form
-										action="http://188.226.241.135/hotelpetra/homepage_v1/index.html"
-										class="default-form">
-										<span class="arrival calendar"> <input type="text"
-											name="arrival" placeholder="Arrival" data-dateformat="m/d/y" />
-											<i class="fa fa-calendar"></i></span> <span
-											class="departure calendar"> <input type="text"
-											name="departure" placeholder="Departure"
-											data-dateformat="m/d/y" /> <i class="fa fa-calendar"></i></span> <span
-											class="adults select-box"> <select name="adults"
-											data-placeholder="Adults">
-												<option>Adults</option>
-												<option value="1">2</option>
-												<option value="2">3</option>
-												<option value="3">4</option>
-										</select>
-										</span> <span class="children select-box"> <select
-											name="children" data-placeholder="Children">
-												<option>Children</option>
-												<option value="1">2</option>
-												<option value="2">3</option>
-												<option value="3">4</option>
-										</select>
-										</span> <span class="submit-btn">
-											<button class="btn btn-transparent">Book Now</button> <a
-											href="#" class="advanced">Advanced Search</a>
-										</span>
-									</form>
-								</li>
-								<!-- End Bed & Breakfast -->
-
 							</ul>
-							<ul class="custom-list tab-content-list">
+							<ul class="custom-list tab-content-list" style="padding:20px;">
 								<ui:insert name="content"></ui:insert>
 							</ul>
 						</div>

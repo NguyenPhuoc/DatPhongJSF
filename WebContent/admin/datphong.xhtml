@@ -16,16 +16,20 @@
 				<f:param value="#{indexController.toDay.year}"></f:param>
 			</h:outputFormat>
 		</h4>
-		
-		
+
+		<!-- 
+		<button id="singleaction-snack" class="btn btn-success bold" data-position="top-right"  data-content="This is my aaaaa snackbar!">Top
+		   Right
+</button>
+ -->
 		<h:form>
 			<p:dataTable var="ct" value="#{datPhongController.findAll()}"
 				style="font-size: 14px">
 				<p:column headerText="Khách hàng" sortBy="#{ct.khachhang.name}">
 					<h:outputText value="#{ct.khachhang.name}" />
-
-				<!-- <p:commandButton value="View" icon="ui-icon-extlink" actionListener="#{datPhongController.infoKhachHang(ct.khachhang)}"/>
-			-->	</p:column>
+					<!-- <p:commandButton value="View" icon="ui-icon-extlink" actionListener="#{datPhongController.infoKhachHang(ct.khachhang)}"/>
+			-->
+				</p:column>
 				<p:column headerText="Phone">
 					<h:outputText value="#{ct.khachhang.phone}" />
 				</p:column>

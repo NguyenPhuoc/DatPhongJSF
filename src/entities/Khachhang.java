@@ -1,5 +1,5 @@
 package entities;
-// Generated Oct 9, 2015 3:18:50 PM by Hibernate Tools 4.3.1.Final
+// Generated Oct 12, 2015 11:23:25 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,6 +29,7 @@ public class Khachhang implements java.io.Serializable {
 	private Set<Ctdatphong> ctdatphongs = new HashSet<Ctdatphong>(0);
 
 	public Khachhang() {
+		this.gender = 1;
 	}
 
 	public Khachhang(int cmnd, String name, int gender, String phone, String email, String address) {

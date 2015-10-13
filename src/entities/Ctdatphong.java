@@ -1,13 +1,13 @@
 package entities;
-// Generated Oct 9, 2015 3:18:50 PM by Hibernate Tools 4.3.1.Final
+// Generated Oct 12, 2015 11:23:25 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,57 +21,55 @@ import javax.persistence.TemporalType;
 @Table(name = "ctdatphong", catalog = "datphongjsf")
 public class Ctdatphong implements java.io.Serializable {
 
-	private CtdatphongId id;
+	private Integer id;
 	private Khachhang khachhang;
 	private Phong phong;
+	private Date ngayDat;
 	private Date ngayNhan;
 	private Date ngayTra;
 	private Date checkin;
 	private Date checkout;
-	private Date ngayDat;
 	private int status;
 
 	public Ctdatphong() {
+		this.status = 1;
 	}
 
-	public Ctdatphong(CtdatphongId id, Khachhang khachhang, Phong phong, Date ngayNhan, Date ngayTra, Date ngayDat,
-			int status) {
-		this.id = id;
+	public Ctdatphong(Khachhang khachhang, Phong phong, Date ngayDat, Date ngayNhan, Date ngayTra, int status) {
 		this.khachhang = khachhang;
 		this.phong = phong;
+		this.ngayDat = ngayDat;
 		this.ngayNhan = ngayNhan;
 		this.ngayTra = ngayTra;
-		this.ngayDat = ngayDat;
 		this.status = status;
 	}
 
-	public Ctdatphong(CtdatphongId id, Khachhang khachhang, Phong phong, Date ngayNhan, Date ngayTra, Date checkin,
-			Date checkout, Date ngayDat, int status) {
-		this.id = id;
+	public Ctdatphong(Khachhang khachhang, Phong phong, Date ngayDat, Date ngayNhan, Date ngayTra, Date checkin,
+			Date checkout, int status) {
 		this.khachhang = khachhang;
 		this.phong = phong;
+		this.ngayDat = ngayDat;
 		this.ngayNhan = ngayNhan;
 		this.ngayTra = ngayTra;
 		this.checkin = checkin;
 		this.checkout = checkout;
-		this.ngayDat = ngayDat;
 		this.status = status;
 	}
 
-	@EmbeddedId
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
-	@AttributeOverrides({ @AttributeOverride(name = "idkhach", column = @Column(name = "IDKhach", nullable = false) ),
-			@AttributeOverride(name = "idphong", column = @Column(name = "IDPhong", nullable = false) ) })
-	public CtdatphongId getId() {
+	@Column(name = "ID", unique = true, nullable = false)
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(CtdatphongId id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDKhach", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "IDKhach", nullable = false)
 	public Khachhang getKhachhang() {
 		return this.khachhang;
 	}
@@ -81,13 +79,23 @@ public class Ctdatphong implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDPhong", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "IDPhong", nullable = false)
 	public Phong getPhong() {
 		return this.phong;
 	}
 
 	public void setPhong(Phong phong) {
 		this.phong = phong;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "NgayDat", nullable = false, length = 0)
+	public Date getNgayDat() {
+		return this.ngayDat;
+	}
+
+	public void setNgayDat(Date ngayDat) {
+		this.ngayDat = ngayDat;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -128,16 +136,6 @@ public class Ctdatphong implements java.io.Serializable {
 
 	public void setCheckout(Date checkout) {
 		this.checkout = checkout;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "NgayDat", nullable = false, length = 0)
-	public Date getNgayDat() {
-		return this.ngayDat;
-	}
-
-	public void setNgayDat(Date ngayDat) {
-		this.ngayDat = ngayDat;
 	}
 
 	@Column(name = "Status", nullable = false)
