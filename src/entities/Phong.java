@@ -26,6 +26,7 @@ public class Phong implements java.io.Serializable {
 	private Set<Ctdatphong> ctdatphongs = new HashSet<Ctdatphong>(0);
 
 	public Phong() {
+		this.status = 1;
 	}
 
 	public Phong(String name, long price, int status) {

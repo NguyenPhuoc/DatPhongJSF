@@ -133,19 +133,18 @@ public class IndexController {
 					lstPhong.remove(ct.getPhong());
 
 		phongs = new ArrayList<Phong>();
-		if (lstPhong.size() == 0) {
+		for (Phong phong : lstPhong)
+			if (phong.getStatus() != 0)
+				phongs.add(phong);
+
+		if (phongs.size() == 0) {
 			this.message = "Không tìm thấy phòng trống nào";
 			this.displayRoom = _NONE;
 			this.displayCheckStatus = _BLOCK;
 		} else {
-			phongs = lstPhong;
 			this.displayRoom = "table";
 			this.displayCheckStatus = _NONE;
 		}
-
-		for (Phong phong : phongs)
-			if (phong.getStatus() == 0)
-				phongs.remove(phong);
 
 	}
 

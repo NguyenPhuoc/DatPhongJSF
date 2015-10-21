@@ -25,10 +25,13 @@
 		<h:form>
 			<p:dataTable var="ct" value="#{datPhongController.findAll()}"
 				style="font-size: 14px">
+				<p:column headerText="ID" sortBy="#{ct.id}">
+					<h:outputText value="#{ct.id}" />
+				</p:column>
 				<p:column headerText="Khách hàng" sortBy="#{ct.khachhang.name}">
-					<h:outputText value="#{ct.khachhang.name}" />
-					<!-- <p:commandButton value="View" icon="ui-icon-extlink" actionListener="#{datPhongController.infoKhachHang(ct.khachhang)}"/>
-			-->
+					<h:commandLink
+						action="#{khachHangController.redirect2(ct.khachhang)}"
+						value="#{ct.khachhang.name}" style="color:#448aff" />
 				</p:column>
 				<p:column headerText="Phone">
 					<h:outputText value="#{ct.khachhang.phone}" />
@@ -61,17 +64,24 @@
 				</p:column>
 				<p:column headerText="Tùy chọn">
 					<h:commandButton action="#{datPhongController.checkIn(ct)}"
-						value="Check in" rendered="#{ct.status==2}" />
+						value="Check in" styleClass="btn btn-primary btn-outline bold"
+						rendered="#{ct.status==2}" />
 					<h:commandButton action="#{datPhongController.checkOut(ct)}"
-						value="Check out" rendered="#{ct.status==3}" />
+						value="Check out" styleClass="btn btn-orange btn-outline bold"
+						rendered="#{ct.status==3}" />
 					<h:commandButton action="#{datPhongController.xacNhan(ct)}"
-						value="Xác nhận đặt" rendered="#{ct.status==1}" />
+						value="Xác nhận đặt" styleClass="btn btn-success btn-outline bold"
+						rendered="#{ct.status==1}" />
 					<h:commandButton action="#{datPhongController.huyDon(ct)}"
-						value="Hủy" rendered="#{ct.status==1}" />
+						value="Hủy" styleClass="btn btn-default-light btn-outline bold"
+						rendered="#{ct.status==1}" />
 					<h:commandButton action="#{datPhongController.huyDon(ct)}"
-						value="Hủy" rendered="#{ct.status==2}" />
+						value="Hủy" styleClass="btn btn-default-light btn-outline bold"
+						rendered="#{ct.status==2}" />
+					<h:commandButton action="#{datPhongController.infoBill(ct)}"
+						value="Xem" styleClass="btn btn-default-dark btn-outline bold"
+						rendered="#{ct.status==4}" />
 				</p:column>
-
 			</p:dataTable>
 		</h:form>
 	</ui:define>

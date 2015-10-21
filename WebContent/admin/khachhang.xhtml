@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="/templates/admin.xhtml">
 	<ui:define name="tagname">Quản lý thông tin khách hàng</ui:define>
 	<ui:define name="content">
@@ -26,6 +27,11 @@
 				<p:column headerText="Gender" sortBy="#{kh.gender}">
 					<h:outputText value="Male" rendered="#{kh.gender==1}" />
 					<h:outputText value="Female" rendered="#{kh.gender==2}" />
+				</p:column>
+				<p:column headerText="Option">
+					<h:commandLink action="#{khachHangController.redirect(kh)}"
+						value="Change" styleClass="btn btn-default-dark"
+						style="color: #fff" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

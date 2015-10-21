@@ -2,24 +2,139 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="/templates/admin.xhtml">
 	<ui:define name="tagname">Quản lý Phòng</ui:define>
 	<ui:define name="content">
+		<style>
+.tb {
+	color: black;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.tb tr td {
+	padding: 5px;
+}
+
+.tb tr td:LAST-CHILD, th {
+	text-align: center;
+}
+
+.tb tr td input {
+	color: black;
+}
+
+.tb tr td a, a:HOVER {
+	color: black;
+	border: 1.5px solid #777;
+	padding: 3px 7px;
+	font-size: 18px;
+	text-decoration: none;
+	border-radius: 3px;
+	background-color: #bbb;
+}
+
+.a {
+	color: white;
+	border: 2.5px solid #bbb;
+	padding: 3px 5px;
+	font-size: 18px
+}
+</style>
 		<h:form>
 			<p:dataTable var="p" value="#{phongController.findAll()}">
 				<p:column headerText="Name" sortBy="#{p.name}">
 					<h:outputText value="Room #{p.name}" />
 				</p:column>
 				<p:column headerText="Price" sortBy="#{p.price}">
-					<h:outputText value="#{p.price}$" />
+					<h:outputText value="#{p.price}$/day" />
 				</p:column>
 				<p:column headerText="Status" sortBy="#{p.status}">
 					<h:outputText value="Disable" rendered="#{p.status==0}" />
 					<h:outputText value="Active" rendered="#{p.status==1}" />
 				</p:column>
+				<p:column headerText="Option">
+					<h:commandButton action="#{phongController.updateStatus(p)}"
+						styleClass="btn btn-primary bold" value="Active"
+						rendered="#{p.status==0}" />
+					<h:commandButton action="#{phongController.updateStatus(p)}"
+						styleClass="btn btn-orange bold" value="Disable"
+						rendered="#{p.status==1}" />
+					<h:outputText value=" " />
+					<h:commandButton action="#{phongController.changePhong(p)}"
+						styleClass="btn btn-default-dark bold" value="Change" disabled="true" />
+				</p:column>
 			</p:dataTable>
 		</h:form>
+		<br></br>
+		<br></br>
+		<div style="margin: auto; width: 700px;">
+			<h:form prependId="false" styleClass="#{phongController.displayAdd}" style="float: left; margin-right: 75px">
+				<table class="tb">
+					<tr>
+						<th colspan="3"><h4>Add new room</h4></th>
+					</tr>
+					<tr>
+						<td>Name:</td>
+						<td><h:inputText id="name"
+								value="#{phongController.phong.name}" required="true"
+								requiredMessage="*" maxlength="50" /></td>
+						<td><h:message for="name" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td>Price:</td>
+						<td><h:inputText id="price"
+								value="#{phongController.phong.price}" required="true"
+								requiredMessage="*" validatorMessage="*">
+								<f:validateLength minimum="2"></f:validateLength>
+							</h:inputText></td>
+						<td><h:message for="price" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td colspan="3"><h:commandButton
+								action="#{phongController.addRoom()}" styleClass="btn btn-primary bold" value="Add new" /></td>
+					</tr>
+				</table>
+			</h:form>
+			<h:form prependId="false"
+				styleClass="#{phongController.displayChange}" style="float: left;">
+				<table class="tb">
+					<tr>
+						<th colspan="3"><h4>Change info room</h4></th>
+					</tr>
+					<tr>
+						<td>Name:</td>
+						<td><h:inputText id="names"
+								value="#{phongController.phong2.name}" required="true"
+								requiredMessage="*" maxlength="50" /></td>
+						<td><h:message for="names" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td>Price:</td>
+						<td><h:inputText id="prices"
+								value="#{phongController.phong2.price}" required="true"
+								requiredMessage="*" validatorMessage="*">
+								<f:validateLength minimum="2"></f:validateLength>
+							</h:inputText></td>
+						<td><h:message for="prices" style="color:red" /></td>
+					</tr>
+					<tr>
+						<td>Status</td>
+						<td><h:selectOneMenu value="#{phongController.phong2.status}">
+								<f:selectItem itemValue="1" itemLabel="Active" />
+								<f:selectItem itemValue="0" itemLabel="Disable" />
+							</h:selectOneMenu></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="3"><h:commandButton
+								action="#{phongController.changePhong2()}" value="Change now" styleClass="btn btn-default-dark bold" /></td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

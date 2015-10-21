@@ -14,6 +14,24 @@ import model.*;
 @SessionScoped
 public class DatPhongController {
 	private Khachhang khachhang;
+	private Ctdatphong ctdatphong;
+	private double moneyToPay;
+
+	public double getMoneyToPay() {
+		return moneyToPay;
+	}
+
+	public void setMoneyToPay(double moneyToPay) {
+		this.moneyToPay = moneyToPay;
+	}
+
+	public Ctdatphong getCtdatphong() {
+		return ctdatphong;
+	}
+
+	public void setCtdatphong(Ctdatphong ctdatphong) {
+		this.ctdatphong = ctdatphong;
+	}
 
 	public Khachhang getKhachhang() {
 		return khachhang;
@@ -35,9 +53,13 @@ public class DatPhongController {
 	}
 
 	public void checkOut(Ctdatphong ctdatphong) {
-		ctdatphong.setCheckout(Calendar.getInstance().getTime());
-		ctdatphong.setStatus(4);
-		new CTDatPhongModel().update(ctdatphong);
+		this.ctdatphong = ctdatphong;
+		this.ctdatphong.setCheckout(Calendar.getInstance().getTime());
+		this.ctdatphong.setStatus(4);
+		//int d = this.ctdatphong.getCheckout().compareTo(this.ctdatphong.getCheckin());
+		//this.moneyToPay = ++d * this.ctdatphong.getPhong().getPrice();
+		new CTDatPhongModel().update(this.ctdatphong);
+		//return "infobill?faces-redirect=true";
 	}
 
 	public void xacNhan(Ctdatphong ctdatphong) {
@@ -53,8 +75,24 @@ public class DatPhongController {
 	public void infoKhachHang(Khachhang khachhang) {
 		this.khachhang = khachhang;
 		RequestContext.getCurrentInstance().openDialog("infoKhachHang");
-		//FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Thông tin khách hàng", "Xin chào!"+khachhang.getName());
-        
-       // RequestContext.getCurrentInstance().showMessageInDialog(message);
+		// FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+		// "Thông tin khách hàng", "Xin chào!"+khachhang.getName());
+
+		// RequestContext.getCurrentInstance().showMessageInDialog(message);
 	}
+
+	public String infoBill(Ctdatphong ctdatphong) {
+		this.ctdatphong = ctdatphong;
+		long d1=ctdatphong.getCheckin().getTime();
+		long d2=ctdatphong.getCheckout().getTime();
+		long d = Math.abs((d1-d2)/(1000*60*60*24));
+		System.out.println(Math.abs((d1-d2)/(1000*60*60*24)));
+		this.moneyToPay = ++d * ctdatphong.getPhong().getPrice();
+		return "infobill?faces-redirect=true";
+	}
+
+	public String okBill() {
+		return "datphong?faces-redirect=true";
+	}
+
 }

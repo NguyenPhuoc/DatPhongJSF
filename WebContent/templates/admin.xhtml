@@ -12,6 +12,14 @@
 
 	<h:outputStylesheet library="admin/css" name="style.css"></h:outputStylesheet>
 	<h:outputScript library="admin/js" name="jquery.js"></h:outputScript>
+	<script type="text/javascript">
+	$(document).ready(function(e) {
+	$('#sidebar-menu li').click(function() {
+		  $(this).addClass("active");
+		});
+	});
+			
+	</script>
 </h:head>
 <h:body styleClass="sidebar-push  sticky-footer">
 	<!-- Sidebar Left -->
@@ -39,7 +47,7 @@
 
 				<div class="wrapper" style="margin-bottom: 90px">
 					<ul class="nav nav-sidebar" id="sidebar-menu">
-						<li class="active"><h:commandLink
+						<li><h:commandLink
 								action="#{indexController.linkAdmin()}" value="">
 								<i class="md md-desktop-mac"></i> Dashboard </h:commandLink></li>
 						<li><h:commandLink action="#{adminController.linkDatPhong()}"
@@ -53,16 +61,16 @@
 						<li><h:commandLink action="#{adminController.linkPhong()}">
 								<i class="md md-pin-drop"></i>
 								Phòng</h:commandLink></li>
-						
 
-					
 
-						
+
+
+
 					</ul>
 
 					<h4 class="sidebar-headline">PETRA HOTEL</h4>
 
-					
+
 				</div>
 			</h:form>
 		</div>
