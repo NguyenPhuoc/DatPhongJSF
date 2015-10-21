@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/admin.xhtml">
+	<ui:define name="tagname">Thay đổi thông tin khách hàng</ui:define>
+	<ui:define name="content">
+		<style>
+.tb {
+	color: black;
+	font-size: 16px
+}
+
+.tb tr td {
+	padding: 5px;
+}
+
+.tb tr td:LAST-CHILD {
+	text-align: left;
+}
+
+.tb tr td input {
+	color: black;
+}
+
+.tb tr td a {
+	color: black;
+	border: 2.5px solid #bbb;
+	padding: 3px 5px;
+	font-size: 18px
+}
+
+.a {
+	color: black;
+	border: 2.5px solid #bbb;
+	padding: 3px 5px;
+	font-size: 18px
+}
+</style>
+		<h:form prependId="false" style="width:500px">
+			<table style="margin: auto;" class="tb">
+
+				<tr>
+					<td colspan="3"><hr></hr></td>
+				</tr>
+				<tr>
+					<td style="width: 130px"><h:outputText value="CMND:" /></td>
+					<td><h:inputText value="#{khachHangController.khachhang.cmnd}"
+							id="cmnd" converterMessage="CMND nhập số" required="true"
+							requiredMessage="*" maxlength="15" /></td>
+					<td><h:message for="cmnd" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Name:" /></td>
+					<td><h:inputText id="name"
+							value="#{khachHangController.khachhang.name}" requiredMessage="*"
+							required="true" maxlength="50" /></td>
+					<td><h:message for="name" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Gender:" /></td>
+					<td><h:selectOneRadio
+							value="#{khachHangController.khachhang.gender}" required="true">
+							<f:selectItem itemValue="1" itemLabel="Male" />
+							<f:selectItem itemValue="2" itemLabel="Female" />
+						</h:selectOneRadio></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Phone:" /></td>
+					<td><h:inputText id="phone"
+							value="#{khachHangController.khachhang.phone}" required="true"
+							maxlength="15" requiredMessage="*" /></td>
+					<td><h:message for="phone" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Email:" /></td>
+					<td><h:inputText id="email"
+							value="#{khachHangController.khachhang.email}" required="true"
+							maxlength="254" requiredMessage="*"
+							validatorMessage="Invalid email">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</h:inputText></td>
+					<td><h:message for="email" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Address:" /></td>
+					<td><h:inputText id="address"
+							value="#{khachHangController.khachhang.address}" required="true"
+							maxlength="15" requiredMessage="*" /></td>
+					<td><h:message for="address" /></td>
+				</tr>
+				<tr>
+					<td><p:outputPanel styleClass="#{khachHangController.diss}">
+
+							<div>
+								<h:commandLink action="#{adminController.linkKhachHang()}"
+									value="Back" styleClass="btn btn-orange btn-outline bold"
+									immediate="true" />
+							</div>
+						</p:outputPanel></td>
+					<td colspan="2" style="text-align: center;"><h:commandLink
+							action="#{khachHangController.saveChange()}"
+							styleClass="btn btn-primary btn-outline bold" value="Save Change" /></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

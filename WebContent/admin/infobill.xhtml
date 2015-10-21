@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/admin.xhtml">
+	<ui:define name="tagname">Thông tin hóa đơn</ui:define>
+	<ui:define name="content">
+		<style>
+.tb {
+	color: black;
+	font-size: 16px
+}
+
+.tb tr td {
+	padding: 5px;
+}
+
+.tb tr td:LAST-CHILD {
+	text-align: left;
+}
+
+.tb tr td input {
+	color: black;
+}
+
+.tb tr td a {
+	color: black;
+	border: 2.5px solid #bbb;
+	padding: 3px 5px;
+	font-size: 18px
+}
+
+.a {
+	color: black;
+	border: 2.5px solid #bbb;
+	padding: 3px 5px;
+	font-size: 18px
+}
+</style>
+		<h:form prependId="false" style="width:500px">
+			<table style="margin: auto;" class="tb">
+				<tr>
+					<th colspan="2">Hóa đơn thanh toán</th>
+				</tr>
+				<tr>
+					<td>Room:</td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.phong.name}" /></td>
+				</tr>
+				<tr>
+					<td>Price:</td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.phong.price}$/day" /></td>
+				</tr>
+				<tr>
+					<td>Check in:</td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.checkin}" /></td>
+				</tr>
+				<tr>
+					<td>Check out:</td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.checkout}" /></td>
+				</tr>
+				<tr>
+					<td>Money to pay:</td>
+					<td><h:outputText
+							value="#{datPhongController.moneyToPay}$" /></td>
+				</tr>
+				<tr>
+					<td colspan="3"><hr></hr></td>
+				</tr>
+				<tr>
+					<td style="width: 130px"><h:outputText value="CMND:" /></td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.khachhang.cmnd}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Name:" /></td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.khachhang.name}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Gender:" /></td>
+					<td><h:outputText
+							rendered="#{datPhongController.ctdatphong.khachhang.gender==1}"
+							value="Male" /> <h:outputText
+							rendered="#{datPhongController.ctdatphong.khachhang.gender==2}"
+							value="Female" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Phone:" /></td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.khachhang.phone}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Email:" /></td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.khachhang.email}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Address:" /></td>
+					<td><h:outputText
+							value="#{datPhongController.ctdatphong.khachhang.address}" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;"><h:commandLink
+							action="#{datPhongController.okBill()}"
+							styleClass="btn btn-primary btn-outline bold" value="Back" /></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
